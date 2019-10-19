@@ -17,6 +17,8 @@ public class Ingredient {
     private UnitOfMeasure uom;
     @ManyToOne
     private Recipe recipe;
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
 
     public Long getId() {
         return id;
@@ -56,5 +58,13 @@ public class Ingredient {
 
     public void setUom(UnitOfMeasure uom) {
         this.uom = uom;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 }
