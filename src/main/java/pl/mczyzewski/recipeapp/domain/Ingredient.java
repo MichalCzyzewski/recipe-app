@@ -1,11 +1,6 @@
 package pl.mczyzewski.recipeapp.domain;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -17,7 +12,9 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
-    //privet unitOfMeasure uom;
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uom;
+
     @ManyToOne
     private Recipe recipe;
 
@@ -51,5 +48,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }
