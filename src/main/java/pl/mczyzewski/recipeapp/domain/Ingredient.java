@@ -1,7 +1,5 @@
 package pl.mczyzewski.recipeapp.domain;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -13,12 +11,12 @@ public class Ingredient {
     private Long id;
     private String description;
     private BigDecimal amount;
-    @OneToMany(fetch = FetchType.EAGER)
+
+    @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure uom;
+
     @ManyToOne
     private Recipe recipe;
-    @Enumerated(value = EnumType.STRING)
-    private Difficulty difficulty;
 
     public Long getId() {
         return id;
@@ -58,13 +56,5 @@ public class Ingredient {
 
     public void setUom(UnitOfMeasure uom) {
         this.uom = uom;
-    }
-
-    public Difficulty getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
     }
 }
