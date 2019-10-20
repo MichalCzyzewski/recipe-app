@@ -27,6 +27,9 @@ public class Recipe {
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
+    @ManyToMany
+    private Set<Category> category;
+
     public Long getId() {
         return id;
     }
