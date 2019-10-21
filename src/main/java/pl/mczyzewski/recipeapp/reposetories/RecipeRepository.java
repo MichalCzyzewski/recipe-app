@@ -1,4 +1,8 @@
 package pl.mczyzewski.recipeapp.reposetories;
 
-public class RecipeRepository {
+import org.springframework.data.repository.CrudRepository;
+import pl.mczyzewski.recipeapp.domain.Recipe;
+
+public interface RecipeRepository extends CrudRepository<Recipe,Long> {
+
 }
