@@ -12,7 +12,7 @@ public class CategoryTest {
     Category category;
 
     @Before
-    private void setUp(){
+    public void setUp(){
         category = new Category();
     }
 
