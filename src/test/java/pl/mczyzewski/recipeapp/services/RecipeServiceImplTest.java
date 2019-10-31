@@ -7,9 +7,11 @@ import org.mockito.MockitoAnnotations;
 import pl.mczyzewski.recipeapp.domain.Recipe;
 import pl.mczyzewski.recipeapp.reposetories.RecipeRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 public class RecipeServiceImplTest {
 
@@ -28,8 +30,14 @@ public class RecipeServiceImplTest {
     @Test
     public void getRecipe() {
 
+        Recipe recipe = new Recipe();
+        HashSet recipesData = new HashSet();
+        recipesData.add(recipe);
+
+        when(recipeRepository.findAll()).thenReturn(recipesData);
+
         Set<Recipe> recipes = recipeService.getRecipe();
 
-        assertEquals(recipes.size(),0);
+        assertEquals(recipes.size(),1);
     }
 }
