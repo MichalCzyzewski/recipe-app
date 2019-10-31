@@ -8,6 +8,10 @@ import org.springframework.ui.Model;
 import pl.mczyzewski.recipeapp.services.RecipeService;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anySet;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class IndexControllerTest {
 
@@ -19,7 +23,7 @@ public class IndexControllerTest {
     IndexController controller;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         controller = new IndexController(recipeService);
     }
@@ -28,7 +32,9 @@ public class IndexControllerTest {
     public void getIndexPage() {
         String viewName = controller.getIndexPage(model);
 
-        assertEquals("index",viewName);
+        assertEquals("index", viewName);
+        verify(recipeService, times(1)).getRecipe();
+        verify(model, times(1)).addAttribute(eq("recipe"), anySet());
 
     }
 
