@@ -59,7 +59,7 @@ public class IndexControllerTest {
 
         ArgumentCaptor argumentCaptor = ArgumentCaptor.forClass(Set.class);
 
-        //then
+
         String viewName = controller.getIndexPage(model);
 
         assertEquals("index", viewName);
