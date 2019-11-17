@@ -34,7 +34,7 @@
                                 <ul>
                                     <li th:remove="all">cat one</li>
                                     <li th:remove="all">cat two</li>
-                                    <li  th:each="category: ${recipe.categories}" th:text="${category.getDescription()}">>cat three</li>
+                                    <li th:each="category: ${recipe.categories}" th:text="${category.getDescription()}">>cat three</li>
                                 </ul>
                             </div>
                         </div>
@@ -43,13 +43,13 @@
                                 <h5>Prep Time:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>30 min</p>
+                                <p th:text="${recipe.prepTime}">30 min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Difficulty:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>Easy</p>
+                                <p th:text="${recipe.getDifficulty()}">Easy</p>
                             </div>
                         </div>
                         <div class="row">
@@ -57,13 +57,13 @@
                                 <h5>Cooktime:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>30 min</p>
+                                <p th:text="${recipe.getCookTime()}">30 min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Servings:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>4</p>
+                                <p th:text="${recipe.getServings()}">4</p>
                             </div>
                         </div>
                         <div class="row">
@@ -71,7 +71,7 @@
                                 <h5>Source:</h5>
                             </div>
                             <div class="col-md-3">
-                                <p>30 min</p>
+                                <p th:text="${recipe.getSource()}">30 min</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>URL:</h5>
@@ -89,9 +89,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <ul>
-                                    <li>1 Cup of milk</li>
-                                    <li>1 Teaspoon of chocolate</li>
-                                    <li>1 Teaspoon of Sugar</li>
+                                    <li th:remove="all">1 Cup of milk</li>
+                                    <li th:remove="all">1 Teaspoon of chocolate</li>
+                                    <li th:each="ingredients : ${recipe.ingredients}" th:text="${ingredients.getDescription()}">1 Teaspoon of Sugar</li>
                                 </ul>
                             </div>
                         </div>
