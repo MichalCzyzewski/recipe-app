@@ -1,7 +1,3 @@
-MC Recipe-app
+<img src="https://circleci.com/gh/MichalCzyzewski/recipe-app/tree/master.svg?style=svg" alt="CircleCI" />
 
-This repositorium was created using course tips : Spring Framework 5: Beginner to Guru.
-
-License
-
-The Spring PetClinic sample application is released under version 2.0 of the Apache License.
+This repository was created using course tips : Spring Framework 5: Beginner to Guru.
