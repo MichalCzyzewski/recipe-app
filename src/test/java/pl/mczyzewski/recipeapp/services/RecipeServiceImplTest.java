@@ -1,5 +1,6 @@
 package pl.mczyzewski.recipeapp.services;
 
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -13,8 +14,12 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
+
+
+
 
 public class RecipeServiceImplTest {
 
@@ -67,4 +72,18 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, never()).findById(anyLong());
     }
 
+    @Test
+    public void testDeleteById() throws Exception
+    {
+        //given
+        Long idToDelete = Long.valueOf(2L);
+
+        //when
+        recipeService.deleteById(idToDelete);
+
+        // no "when" since method has void return type
+
+        //then
+        verify(recipeRepository, times(1)).deleteById(anyLong());
+    }
 }
