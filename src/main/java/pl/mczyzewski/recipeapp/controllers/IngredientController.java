@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.mczyzewski.recipeapp.commands.IngredientCommand;
-import pl.mczyzewski.recipeapp.commands.UnitOfMeasureCommand;
 import pl.mczyzewski.recipeapp.services.IngredientService;
 import pl.mczyzewski.recipeapp.services.RecipeService;
 
