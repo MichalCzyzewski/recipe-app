@@ -11,6 +11,7 @@ import pl.mczyzewski.recipeapp.commands.RecipeCommand;
 
 import pl.mczyzewski.recipeapp.services.IngredientService;
 import pl.mczyzewski.recipeapp.services.RecipeService;
+import pl.mczyzewski.recipeapp.services.UnitOfMeasureService;
 
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -25,6 +26,9 @@ public class IngredientControllerTest {
     @Mock
     RecipeService recipeService;
 
+    @Mock
+    UnitOfMeasureService unitOfMeasureService;
+
     IngredientController controller;
 
     MockMvc mockMvc;
@@ -33,7 +37,7 @@ public class IngredientControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        controller = new IngredientController(recipeService , ingredientService);
+        controller = new IngredientController(recipeService , ingredientService, unitOfMeasureService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 

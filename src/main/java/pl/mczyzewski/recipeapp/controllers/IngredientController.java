@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.mczyzewski.recipeapp.commands.IngredientCommand;
 import pl.mczyzewski.recipeapp.services.IngredientService;
 import pl.mczyzewski.recipeapp.services.RecipeService;
+import pl.mczyzewski.recipeapp.services.UnitOfMeasureService;
 
 @Slf4j
 @Controller
@@ -20,9 +21,10 @@ public class IngredientController {
     private final UnitOfMeasureService unitOfMeasureService;
 
 
-    public IngredientController(RecipeService recipeService, IngredientService ingredientService) {
+    public IngredientController(RecipeService recipeService, IngredientService ingredientService, UnitOfMeasureService unitOfMeasureService) {
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
+        this.unitOfMeasureService = unitOfMeasureService;
     }
 
     @GetMapping
@@ -52,9 +54,11 @@ public class IngredientController {
 
         model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
 
-        return "recipe/ingredient/ingredientform"
+        return "recipe/ingredient/ingredientform";
     }
 
+    @GetMapping
+    @RequestMapping("recipe/{recipeId}/ingredient")
     public String saveOrUpdate(@ModelAttribute IngredientCommand command)
     {
         IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
