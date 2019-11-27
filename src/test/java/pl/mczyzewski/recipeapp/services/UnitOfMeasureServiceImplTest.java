@@ -26,11 +26,12 @@ public class UnitOfMeasureServiceImplTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
+
         service = new UnitOfMeasureServiceImpl(unitOfMeasureRepository, unitOfMeasureToUnitOfMeasureCommand);
     }
 
     @Test
-    public void listAllUoms()throws Exception {
+    public void listAllUoms() throws Exception {
         //given
         Set<UnitOfMeasure> unitOfMeasures = new HashSet<>();
         UnitOfMeasure uom1 = new UnitOfMeasure();
@@ -38,7 +39,7 @@ public class UnitOfMeasureServiceImplTest {
         unitOfMeasures.add(uom1);
 
         UnitOfMeasure uom2 = new UnitOfMeasure();
-        uom1.setId(2L);
+        uom2.setId(2L);
         unitOfMeasures.add(uom2);
 
         when(unitOfMeasureRepository.findAll()).thenReturn(unitOfMeasures);
@@ -47,8 +48,8 @@ public class UnitOfMeasureServiceImplTest {
         Set<UnitOfMeasureCommand> commands = service.listAllUoms();
 
         //then
-        assertEquals(2,commands.size());
+        assertEquals(2, commands.size());
         verify(unitOfMeasureRepository, times(1)).findAll();
-
     }
+
 }
