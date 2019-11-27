@@ -15,7 +15,6 @@ import pl.mczyzewski.recipeapp.reposetories.RecipeRepository;
 
 import static org.junit.Assert.assertEquals;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class RecipeServiceIT {
