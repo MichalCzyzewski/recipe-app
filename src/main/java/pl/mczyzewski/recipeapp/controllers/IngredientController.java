@@ -11,6 +11,7 @@ import pl.mczyzewski.recipeapp.services.IngredientService;
 import pl.mczyzewski.recipeapp.services.RecipeService;
 import pl.mczyzewski.recipeapp.services.UnitOfMeasureService;
 
+
 @Slf4j
 @Controller
 public class IngredientController {
@@ -46,7 +47,7 @@ public class IngredientController {
 
     @GetMapping
     @RequestMapping("recipe/{recipeId}/ingredient/new")
-    public String newIngredient(@PathVariable String recipeId, Model model) {
+    public String newIngredient(@PathVariable String recipeId, Model model){
 
         //make sure we have a good id value
         RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
@@ -60,7 +61,7 @@ public class IngredientController {
         //init uom
         ingredientCommand.setUom(new UnitOfMeasureCommand());
 
-        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+        model.addAttribute("uomList",  unitOfMeasureService.listAllUoms());
 
         return "recipe/ingredient/ingredientform";
     }
