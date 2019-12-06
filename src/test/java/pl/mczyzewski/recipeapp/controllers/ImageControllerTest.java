@@ -55,4 +55,9 @@ public class ImageControllerTest {
 
     }
 
+    @Test
+    public void renderingImageFromDB() throws Exception {
+        //given
+
+    }
 }
