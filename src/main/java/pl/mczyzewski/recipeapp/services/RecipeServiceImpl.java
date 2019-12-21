@@ -7,6 +7,7 @@ import pl.mczyzewski.recipeapp.commands.RecipeCommand;
 import pl.mczyzewski.recipeapp.converters.RecipeCommandToRecipe;
 import pl.mczyzewski.recipeapp.converters.RecipeToRecipeCommand;
 import pl.mczyzewski.recipeapp.domain.Recipe;
+import pl.mczyzewski.recipeapp.exceptions.NotFoundException;
 import pl.mczyzewski.recipeapp.reposetories.RecipeRepository;
 
 import java.util.HashSet;
@@ -43,7 +44,8 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()) {
-            throw new RuntimeException("Recipe Not Found!");
+          //  throw new RuntimeException("Recipe Not Found!");
+            throw new NotFoundException("Recipe Not Found!");
         }
         return recipeOptional.get();
     }

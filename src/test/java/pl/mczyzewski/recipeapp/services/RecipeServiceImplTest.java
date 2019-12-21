@@ -8,6 +8,7 @@ import org.mockito.MockitoAnnotations;
 import pl.mczyzewski.recipeapp.converters.RecipeCommandToRecipe;
 import pl.mczyzewski.recipeapp.converters.RecipeToRecipeCommand;
 import pl.mczyzewski.recipeapp.domain.Recipe;
+import pl.mczyzewski.recipeapp.exceptions.NotFoundException;
 import pl.mczyzewski.recipeapp.reposetories.RecipeRepository;
 
 import java.util.HashSet;
@@ -17,8 +18,6 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.*;
-
-
 
 
 public class RecipeServiceImplTest {
@@ -40,6 +39,14 @@ public class RecipeServiceImplTest {
 
         recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws Exception {
+        Optional<Recipe> recipeOptional = Optional.empty();
+        when((recipeRepository.findById(anyLong()))).thenReturn(recipeOptional);
+        Recipe recipeReturn = recipeService.findById(1L);
+    }
+
 
     @Test
     public void getRecipeByIdTest() throws Exception {
@@ -73,8 +80,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void testDeleteById() throws Exception
-    {
+    public void testDeleteById() throws Exception {
         //given
         Long idToDelete = Long.valueOf(2L);
 
