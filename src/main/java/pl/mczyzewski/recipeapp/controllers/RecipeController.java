@@ -11,19 +11,21 @@ import pl.mczyzewski.recipeapp.commands.RecipeCommand;
 import pl.mczyzewski.recipeapp.exceptions.NotFoundException;
 import pl.mczyzewski.recipeapp.services.RecipeService;
 
+import javax.validation.Valid;
+
 @Slf4j
 @Controller
 public class RecipeController {
 
+    private static final String RECIPE_RECIPEFORM_URL ="recipe/recipeform";
     private final RecipeService recipeService;
-    private final String RECIPE_RECIPEFORM_URL ="recipe/recipeform";
 
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
     }
 
     @GetMapping("/recipe/{id}/show")
-    public String showById(@PathVariable String id, Model model) {
+    public String showById(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
         return "recipe/show";
     }
@@ -42,7 +44,7 @@ public class RecipeController {
     }
 
     @PostMapping("recipe")
-    public String saveOrUpdate(@ModelAttribute("recipe") RecipeCommand command , BindingResult bindingResult) {
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand command , BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()){
             bindingResult.getAllErrors().forEach(objectError -> {
@@ -53,7 +55,7 @@ public class RecipeController {
         }
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
 
-        return "redirect:/recipe/" + savedCommand.getId() + "/show/";
+        return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
 
     @GetMapping("recipe/{id}/delete")
@@ -74,7 +76,6 @@ public class RecipeController {
 
         modelAndView.setViewName("404error");
         modelAndView.addObject("exception",exception);
-        exception.getMessage();
         return modelAndView;
     }
 

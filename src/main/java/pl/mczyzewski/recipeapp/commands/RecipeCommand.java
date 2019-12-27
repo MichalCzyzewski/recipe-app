@@ -19,10 +19,11 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class RecipeCommand {
+    private Long id;
+
 
     @NotBlank
     @Size(min = 3, max = 255)
-    private Long id;
     private String description;
 
 

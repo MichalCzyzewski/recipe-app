@@ -105,7 +105,7 @@ public class RecipeControllerTest {
                 .param("directions", "some directions")
         )
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/recipe/2/show/"));
+                .andExpect(view().name("redirect:/recipe/2/show"));
     }
 
 
@@ -118,7 +118,7 @@ public class RecipeControllerTest {
 
         mockMvc.perform(post("/recipe")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("id","asd")
+                .param("id","")
         )
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("recipe"))
