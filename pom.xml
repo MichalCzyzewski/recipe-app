@@ -104,10 +104,10 @@
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <format>
+                    <formats>
                         <format>html</format>
                         <format>xml</format>
-                    </format>
+                    </formats>
                 </configuration>
             </plugin>
         </plugins>
